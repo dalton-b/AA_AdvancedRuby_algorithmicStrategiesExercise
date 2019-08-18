@@ -7,13 +7,15 @@ def peak_finder(arr)
 
     peaks = []
 
-    (0...arr.length - 2).each do |i|
-        if arr[i + 1] > arr[i] and arr[i + 1] > arr[i + 2]
-            peaks << arr[i + 1]
-        elsif i == 0 and arr[i] > arr[i + 1]
-            peaks << arr[i]
-        elsif arr.length - 1 == i+2 and arr[i + 2] > arr[i+1]
-            peaks << arr[i+2]
+    arr.each_with_index do |mid, i|
+        left = arr[i-1]
+        right = arr[i+1]
+        if i == 0 && mid  > right
+            peaks << mid
+        elsif i == arr.length - 1 && mid > left
+            peaks << mid
+        elsif mid > left && mid > right
+            peaks << mid
         end
     end
     

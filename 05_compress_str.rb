@@ -3,23 +3,23 @@
 # For example "aaabbc" is compressed to "3a2bc".
 
 def compress_str(str)
-    modified_string = str
-    counter = 0
-    (0...str.length - 1).each do |i|
-        if str[i] == str[i+1]
-            counter = counter + 1
-        elsif counter > 0
-            modified_string[i-counter..i] = counter
+    compressed = ""
+
+    i = 0
+    while i < str.length
+        char = str[i]
+        count = 0
+        while char == str[i]
+            count += 1
+            i += 1
+        end
+        if count > 1
+            compressed += (count.to_s + char)
+        else
+            compressed += char
         end
     end
-
-    # for char in string
-    # if char is the same as previous char
-    # increment counter
-    # if char changes
-    # replace chars with number
-
-    return modified_string
+    compressed
 end
 
 p compress_str("aaabbc")        # => "3a2bc"
